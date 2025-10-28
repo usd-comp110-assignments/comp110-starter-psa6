@@ -42,27 +42,38 @@ def test_draw_subregion():
 
 
 def test_draw_filled_subregion():
-    style = get_style_selection()
 
     valid = False
     while not valid:
-        vote_input = input("Enter the vote results tuple: ")
+        pen_input = input("Enter the pen color: ")
         try:
-            votes = ast.literal_eval(vote_input)
-            print(votes)
-            if not isinstance(votes, tuple):
-                # check that they entered a tuple
+            pen = ast.literal_eval(pen_input)
+            print(pen)
+            if not isinstance(pen, str):
                 raise ValueError()
-            elif len(votes) != 3:
+            else:
+                valid = True
+        except:
+            print("FAIL: Invalid pen input.")
+    
+    valid = False
+    while not valid:
+        fill_input = input("Enter the fill color: ")
+        try:
+            fill = ast.literal_eval(fill_input)
+            print(fill)
+            if not isinstance(fill, tuple):
+                raise ValueError()
+            if len(fill) != 3:
                 # check that the tuple has 3 values
                 raise ValueError()
-            elif False in [isinstance(v, int) for v in votes]:
+            elif False in [isinstance(v, float) for v in fill]:
                 # check that all values are integers
                 raise ValueError()
             else:
                 valid = True
         except:
-            print("FAIL: Invalid tuple input.")
+            print("FAIL: Invalid fill input.")
 
     points = [(5, 3), (1, 6), (-3, 1), (-1, -4)]
     t = turtle.Turtle()
@@ -71,7 +82,7 @@ def test_draw_filled_subregion():
     # set screen to zoom in smaller region
     s.setworldcoordinates(-10, -10, 10, 10)
 
-    purple_america.draw_filled_subregion(t, points, style, votes)
+    purple_america.draw_filled_subregion(t, points, pen, fill)
 
     turtle.exitonclick()
 
@@ -130,8 +141,86 @@ def test_read_subregion():
     except AssertionError as e:
         print(e)
     else:
-        print("Basic tests passed. Check full test results after sync'ing")
+        print("Basic tests passed. Check full test results after uploading.")
 
+def test_calculate_colors():
+    
+    valid = False
+    while not valid:
+        vote_input = input("Enter the vote count: ")
+        try:
+            vote = ast.literal_eval(vote_input)
+            print(vote)
+            if not isinstance(vote, tuple):
+                raise ValueError()
+            if len(vote) != 3:
+                # check that the tuple has 3 values
+                raise ValueError()
+            elif False in [isinstance(v, int) for v in vote]:
+                # check that all values are integers
+                raise ValueError()
+            else:
+                valid = True
+        except:
+            print("FAIL: Invalid vote input.")
+    
+    try:
+        # test black-white
+        print("\nTesting style black-white")
+        expected = ('black',(1.0,1.0,1.0))
+        while True:
+            expected_input = get_literal("Enter expected output: ")
+
+            if expected_input != expected:
+                print("Incorrect tuple of colors entered.")
+            else:
+                break
+        
+        pen_color, fill_color = purple_america.calculate_colors("black-white",vote)
+        print("pen color:", pen_color)
+        assert pen_color  == 'black', "FAIL: region name should be exactly 'black'"
+        print("fill color:", fill_color)
+        assert fill_color == expected[1], f"FAIL: Expected points to be {expected[1]}"
+
+        # test red-blue
+        print("\nTesting style red-blue")
+        expected = ('white',(1.0,0.0,0.0))
+        while True:
+            expected_input = get_literal("Enter expected output: ")
+
+            if expected_input != expected:
+                print("Incorrect tuple of colors entered.")
+            else:
+                break
+        
+        pen_color, fill_color = purple_america.calculate_colors("red-blue",vote)
+        print("pen color:", pen_color)
+        assert pen_color  == 'white', "FAIL: region name should be exactly 'white'"
+        print("fill color:", fill_color)
+        assert fill_color == expected[1], f"FAIL: Expected points to be {expected[1]}"
+
+        # test purple
+        print("\nTesting style purple")
+        expected = ('white',(.53,.05,.42))
+        expected_calc = (0.5263157894736842, 0.05263157894736842, 0.42105263157894735)
+        while True:
+            expected_input = get_literal("Enter expected output: ")
+
+            if expected_input != expected:
+                print("Incorrect tuple of colors entered.")
+            else:
+                break
+        
+        pen_color, fill_color = purple_america.calculate_colors("purple",vote)
+        print("pen color:", pen_color)
+        assert pen_color  == 'white', "FAIL: region name should be exactly 'white'"
+        print("fill color:", fill_color)
+        assert fill_color == expected_calc, f"FAIL: Expected points to be {expected[1]}"
+
+    except AssertionError as e:
+        print(e)
+    else:
+        print("Basic tests passed. Check full test results after uploading.")
 
 def test_get_election_results():
     try:
@@ -150,7 +239,7 @@ def test_get_election_results():
     except AssertionError as e:
         print(e)
     else:
-        print("Basic tests passed. Check full test results after sync'ing")
+        print("Basic tests passed. Check full test results after uploading")
 
 def test_draw_map():
     style = get_style_selection()
@@ -168,7 +257,7 @@ def test_draw_map():
 
 def main():
     options = {1: test_draw_subregion, 2: test_draw_filled_subregion, 
-                3: test_read_subregion, 4: test_get_election_results, 5: test_draw_map}
+                3: test_read_subregion, 4: test_calculate_colors, 5: test_get_election_results, 6: test_draw_map}
 
     for (k, v) in options.items():
         print(f"({k}) {v.__name__[5:]}")

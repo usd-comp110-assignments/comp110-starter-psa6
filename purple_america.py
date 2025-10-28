@@ -26,7 +26,7 @@ def draw_subregion(my_turtle, polygon_points):
     pass  # replace this line with your implemenation
 
 
-def draw_filled_subregion(my_turtle, polygon_points, style, votes):
+def draw_filled_subregion(my_turtle, polygon_points, pen_color,fill_color):
     """ Replace this with a docstring comment with the correct format. """
 
     pass  # replace this line with your implemenation
@@ -37,18 +37,20 @@ def read_subregion(geo_file):
 
     return None, None  # replace this line with your implemenation
 
+def calculate_colors(style,votes):
+    """Replace this with a dcostring comment with the correct format. """
 
-def draw_map(geo_filename, election_results, style):
-    """ Replace this with a docstring comment with the correct format. """
-
-    pass  # replace this line with your implemenation
-
+    return None, None
 
 def get_election_results(election_filename):
     """ Replace this with a docstring comment with the correct format. """
 
     return None  # replace this line with your implemenation
 
+def draw_map(geo_filename, election_results, style):
+    """ Replace this with a docstring comment with the correct format. """
+
+    pass  # replace this line with your implemenation
 
 def main():
     """
