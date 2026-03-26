@@ -3,9 +3,8 @@ Module: purple_america
 
 Program for visualizing election results in interesting ways.
 
-Authors:
+Author:
 1) Name - USD Email Address
-2) Name - USD Email Address
 """
 
 import turtle

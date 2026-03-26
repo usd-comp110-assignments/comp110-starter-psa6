@@ -96,7 +96,7 @@ def get_literal(prompt):
             print("Invalid input.")
 
 def test_read_subregion():
-    f = open("fake_subregions.txt", 'r')
+    f = open("geographic_data/fake_subregions.txt", 'r')
 
 
     try:
@@ -233,7 +233,7 @@ def test_get_election_results():
             else:
                 break
 
-        voting_results = purple_america.get_election_results("fake_votes.txt")
+        voting_results = purple_america.get_election_results("election_data/fake_votes.txt")
         print("voting_results:", voting_results)
         assert voting_results == expected_results, f"FAIL: Expected results to be {expected_results}"
     except AssertionError as e:
@@ -245,7 +245,7 @@ def test_draw_map():
     style = get_style_selection()
 
     voting_data = {"Narnia": (5000, 3500, 40), "Candy Land": (800,6300,74)}
-    purple_america.draw_map("fantasy_region.txt", voting_data, style)
+    purple_america.draw_map("geographic_data/fantasy_region.txt", voting_data, style)
 
     try:
         turtle.exitonclick()
