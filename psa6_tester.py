@@ -268,11 +268,12 @@ def main():
         if n not in options:
             raise ValueError()
 
-        # call the tester function
-        options[n]()
-
     except ValueError:
         print("ERROR: Invalid selection")
+        return
+    
+    # call the tester function
+    options[n]()
 
 
 if __name__ == "__main__":
