@@ -3,58 +3,50 @@ Module: purple_america
 
 Program for visualizing election results in interesting ways.
 
-Author:
-1) Name - USD Email Address
+Author: <INSERT YOUR FULL NAME AND USD EMAIL HERE>
 """
 
 import turtle
 
 def draw_subregion(my_turtle, polygon_points):
-    """
-    Draws a polygonal subregion.
+    """Draws a polygonal subregion.
 
-    Parameters:
-    my_turtle (type: Turtle) - The turtle that will do the drawing.
-    polygon_points (type: List) - List of tuples of the coordinates of the
-      polygonal region.
-
-    Returns:
-    None
+    Args:
+        my_turtle: The turtle that will do the drawing.
+        polygon_points: List of tuples of the coordinates of the polygonal region.
     """
 
-    pass  # replace this line with your implemenation
+    pass  # To Do: replace this line with your implemenation
 
 
 def draw_filled_subregion(my_turtle, polygon_points, pen_color,fill_color):
-    """ Replace this with a docstring comment with the correct format. """
+    """Replace this with a docstring comment with the correct format."""
 
-    pass  # replace this line with your implemenation
+    pass  # To Do: replace this line with your implemenation
 
 
 def read_subregion(geo_file):
-    """ Replace this with a docstring comment with the correct format. """
+    """Replace this with a docstring comment with the correct format."""
 
-    return None, None  # replace this line with your implemenation
+    return None, None  # To Do: eplace this line with your implemenation
 
-def calculate_colors(style,votes):
-    """Replace this with a dcostring comment with the correct format. """
+def calculate_colors(style, votes):
+    """Replace this with a dcostring comment with the correct format."""
 
-    return None, None
+    return None, None # To Do: replace this line with your implemenation
 
 def get_election_results(election_filename):
-    """ Replace this with a docstring comment with the correct format. """
+    """Replace this with a docstring comment with the correct format."""
 
-    return None  # replace this line with your implemenation
+    return None  # To Do: replace this line with your implemenation
 
 def draw_map(geo_filename, election_results, style):
-    """ Replace this with a docstring comment with the correct format. """
+    """Replace this with a docstring comment with the correct format."""
 
-    pass  # replace this line with your implemenation
+    pass  # To Do: replace this line with your implemenation
 
 def main():
-    """
-    Put your docstring comment here.
-    """
+    """Program that draws an electoral map based on geographic and election data."""
 
     geo_filename = input("Enter the name of the geography file: ")
     election_filename = input("Enter the name of the election data file: ")
@@ -79,11 +71,10 @@ def main():
             print("Invalid selection!")
 
 
-    pass # Replace this line with your implementation of main
+    # To Do: Write your code to complete this function below here and then remove this comment.
 
 
-"""
-WARNING: Do NOT modify anything below this point.
-"""
+# WARNING: Do NOT modify anything below this point.
+
 if __name__ == "__main__":
     main()
